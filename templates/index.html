@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" id="metaThemeColor" content="#111418">
+    <title>ATA SMS Bomber - Web Dashboard</title>
+    <link rel="shortcut icon" href="../static/logo.jpg" type="image/x-icon">
+    <!-- Google Fonts: Inter & JetBrains Mono for Console -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0f1216;
+            --bg-gradient-1: rgba(255, 107, 82, 0.12);
+            --bg-gradient-2: rgba(255, 133, 102, 0.06);
+            --card-bg: rgba(24, 28, 35, 0.9);
+            --card-border: rgba(255, 107, 82, 0.45);
+            --input-border: rgba(255, 107, 82, 0.35);
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
+            --input-bg: rgba(16, 19, 24, 0.95);
+
+            --primary: #ff6b52;
+            --primary-hover: #ff5238;
+            --primary-glow: rgba(255, 107, 82, 0.35);
+
+            --secondary: #ff8b66;
+            --secondary-glow: rgba(255, 139, 102, 0.3);
+
+            --success: #10b981;
+            --success-glow: rgba(16, 185, 129, 0.25);
+            --danger: #ef4444;
+            --danger-glow: rgba(239, 68, 68, 0.25);
+            --warning: #f59e0b;
+
+            --stat-bg: rgba(255, 107, 82, 0.07);
+            --console-bg: #0c0e12;
+            --console-header-bg: linear-gradient(135deg, rgba(255, 107, 82, 0.22), rgba(255, 107, 82, 0.08));
+            --console-border: rgba(255, 107, 82, 0.55);
+            --console-glow: 0 8px 30px rgba(255, 107, 82, 0.22);
+            --header-border: rgba(255, 107, 82, 0.4);
+            --shadow-color: rgba(255, 107, 82, 0.15);
+        }
+
+        html[data-theme="dark"] {
+            --bg-color: #0f1216;
+            --bg-gradient-1: rgba(255, 107, 82, 0.12);
+            --bg-gradient-2: rgba(255, 133, 102, 0.06);
+            --card-bg: rgba(24, 28, 35, 0.9);
+            --card-border: rgba(255, 107, 82, 0.45);
+            --input-border: rgba(255, 107, 82, 0.35);
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
+            --input-bg: rgba(16, 19, 24, 0.95);
+
+            --primary: #ff6b52;
+            --primary-hover: #ff5238;
+            --primary-glow: rgba(255, 107, 82, 0.35);
+
+            --secondary: #ff8b66;
+            --secondary-glow: rgba(255, 139, 102, 0.3);
+
+            --success: #10b981;
+            --success-glow: rgba(16, 185, 129, 0.25);
+            --danger: #ef4444;
+            --danger-glow: rgba(239, 68, 68, 0.25);
+            --warning: #f59e0b;
+
+            --stat-bg: rgba(255, 107, 82, 0.07);
+            --console-bg: #0c0e12;
+            --console-header-bg: linear-gradient(135deg, rgba(255, 107, 82, 0.22), rgba(255, 107, 82, 0.08));
+            --console-border: rgba(255, 107, 82, 0.55);
+            --console-glow: 0 8px 30px rgba(255, 107, 82, 0.22);
+            --header-border: rgba(255, 107, 82, 0.4);
+            --shadow-color: rgba(255, 107, 82, 0.15);
+        }
+
+        html[data-theme="light"] {
+            --bg-color: #fff8f2;
+            --bg-gradient-1: rgba(234, 88, 12, 0.12);
+            --bg-gradient-2: rgba(251, 146, 60, 0.08);
+            --card-bg: #ffffff;
+            --card-border: rgba(234, 88, 12, 0.45);
+            --input-border: rgba(234, 88, 12, 0.35);
+            --text-color: #0f172a;
+            --text-muted: #64748b;
+            --input-bg: #fffbf7;
+
+            --primary: #ea580c;
+            --primary-hover: #c2410c;
+            --primary-glow: rgba(234, 88, 12, 0.35);
+
+            --secondary: #f97316;
+            --secondary-glow: rgba(249, 115, 22, 0.3);
+
+            --success: #10b981;
+            --success-glow: rgba(16, 185, 129, 0.2);
+            --danger: #ef4444;
+            --danger-glow: rgba(239, 68, 68, 0.2);
+            --warning: #f59e0b;
+
+            --stat-bg: rgba(234, 88, 12, 0.07);
+            --console-bg: #fffbf7;
+            --console-header-bg: linear-gradient(135deg, rgba(234, 88, 12, 0.22), rgba(249, 115, 22, 0.08));
+            --console-border: rgba(234, 88, 12, 0.55);
+            --console-glow: 0 8px 30px rgba(234, 88, 12, 0.22);
+            --header-border: rgba(234, 88, 12, 0.4);
+            --shadow-color: rgba(234, 88, 12, 0.15);
+        }
+
+        html,
+        body {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+            touch-action: pan-x pan-y;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+            font-size: 16px !important;
+            /* Disables iOS Safari focus zoom */
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image:
+                radial-gradient(at 0% 0%, var(--bg-gradient-1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, var(--bg-gradient-2) 0px, transparent 50%);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Container Layout */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Style */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--header-border);
+            padding-bottom: 0.75rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-left: 8px;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .logo-title h1 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-title p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: -0.1rem;
+            font-weight: 500;
+        }
+
+        .version-badge {
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.12rem 0.5rem;
+            border-radius: 12px;
+            vertical-align: middle;
+            margin-left: 0.35rem;
+            letter-spacing: 0.04em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            background: var(--stat-bg);
+            box-shadow: 0 2px 8px var(--primary-glow);
+            transition: all 0.25s ease;
+            -webkit-text-fill-color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Theme Toggle Button - Fixed No Rotation Bug */
+        .theme-toggle-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.15s ease;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .theme-toggle-btn:hover {
+                border-color: var(--primary);
+                color: var(--primary);
+            }
+        }
+
+        .theme-toggle-btn:focus,
+        .theme-toggle-btn:focus-visible {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .theme-toggle-btn i {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: rotate(0deg);
+        }
+
+        .theme-toggle-btn.rotating i {
+            transform: rotate(360deg);
+        }
+
+        .badge-status {
+            display: none !important;
+        }
+
+        /* Main Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 440px 1fr;
+            }
+        }
+
+        /* Cards Style (Modern Glassmorphism) */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1rem 1.1rem;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            padding-bottom: 0.4rem;
+            border-bottom: 1.5px solid var(--card-border);
+        }
+
+        .card-title i {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        /* Forms inputs - Ultra Compact & Sleek */
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.65rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-row:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .input-wrapper span.prefix {
+            position: absolute;
+            left: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.82rem;
+            border-right: 1.5px solid var(--card-border);
+            padding-right: 0.35rem;
+        }
+
+        .form-control {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1.5px solid var(--input-border);
+            border-radius: 10px;
+            padding: 0.5rem 0.75rem 0.5rem 2.1rem;
+            color: var(--text-color);
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-control-phone {
+            padding-left: 4.4rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        /* Modern Mode Selector */
+        .mode-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem;
+            background: var(--input-bg);
+            padding: 0.25rem;
+            border-radius: 10px;
+            border: 1.5px solid var(--input-border);
+        }
+
+        .mode-option {
+            cursor: pointer;
+            text-align: center;
+            padding: 0.45rem 0.25rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .mode-option.active[data-mode="normal"] {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: #ffffff;
+        }
+
+        .mode-option.active[data-mode="turbo"] {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #ffffff;
+        }
+
+        /* Action Buttons */
+        .btn {
+            width: 100%;
+            padding: 0.5rem 0.35rem;
+            border-radius: 10px;
+            border: none;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            transition: all 0.2s ease;
+            color: #ffffff;
+            letter-spacing: 0.01em;
+            height: 38px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .btn-start:hover {
+                box-shadow: 0 6px 20px var(--primary-glow);
+                filter: brightness(1.05);
+            }
+
+            .btn-stop:hover {
+                box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+            }
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-stop {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 4px 15px var(--danger-glow);
+        }
+
+        .btn:disabled {
+            background: var(--input-bg);
+            border: 1.5px solid var(--input-border);
+            color: var(--text-muted);
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.6;
+        }
+
+        /* Modernized Stat Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        .stat-card {
+            background: var(--stat-bg);
+            border: 1.5px solid var(--card-border);
+            border-radius: 12px;
+            padding: 0.5rem 0.35rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.15rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px var(--shadow-color);
+            transition: border-color 0.2s ease;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .stat-card.success-card::before {
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
+
+        .stat-card.failed-card::before {
+            background: linear-gradient(90deg, #ef4444, #f87171);
+        }
+
+        .stat-card.speed-card::before {
+            background: linear-gradient(90deg, #f59e0b, #fb923c);
+        }
+
+        .stat-header-row {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .stat-card.success-card .stat-header-row i {
+            color: #10b981;
+        }
+
+        .stat-card.failed-card .stat-header-row i {
+            color: #ef4444;
+        }
+
+        .stat-card.speed-card .stat-header-row i {
+            color: #f59e0b;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-color);
+            line-height: 1.1;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Console Output Terminal - Theme Accent Colors */
+        .console-container {
+            display: flex;
+            flex-direction: column;
+            height: 420px;
+            background: var(--console-bg);
+            border: 2px solid var(--console-border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--console-glow);
+        }
+
+        .console-header {
+            background: var(--console-header-bg);
+            padding: 0.55rem 0.85rem;
+            border-bottom: 2px solid var(--console-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .console-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .console-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ef4444;
+            display: inline-block;
+            box-shadow: 0 0 6px #ef4444;
+        }
+
+        .console-actions {
+            display: flex;
+            gap: 0.35rem;
+        }
+
+        .console-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.85rem;
+            padding: 0.2rem 0.45rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .console-btn:hover {
+            color: var(--text-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .console-body {
+            flex: 1;
+            padding: 0.75rem;
+            overflow-y: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            line-height: 1.45;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-y: contain;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Log Line Colors */
+        .log-line {
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+
+        .log-line.success {
+            color: #34d399;
+        }
+
+        .log-line.error {
+            color: #f87171;
+        }
+
+        .log-line.info {
+            color: #60a5fa;
+        }
+
+        .log-line.system {
+            color: #fb923c;
+        }
+
+        .log-line.neutral {
+            color: #cbd5e1;
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 0.75rem 0 0.25rem 0;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Mobile Screen Ultra-Compact Optimizations (Single-Screen View) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem 0.6rem;
+            }
+
+            header {
+                padding-bottom: 0.4rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .logo-img {
+                height: 32px;
+                width: 32px;
+                border-radius: 8px;
+            }
+
+            .logo-title h1 {
+                font-size: 1.15rem;
+            }
+
+            .logo-title p {
+                display: none;
+            }
+
+            .theme-toggle-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 0.9rem;
+                border-radius: 9px;
+            }
+
+            .dashboard-grid {
+                gap: 0.65rem;
+            }
+
+            .card {
+                padding: 0.6rem 0.65rem;
+                border-radius: 12px;
+                gap: 0.45rem;
+            }
+
+            .card-title {
+                font-size: 0.85rem;
+                padding-bottom: 0.25rem;
+            }
+
+            .stats-grid {
+                gap: 0.35rem;
+            }
+
+            .stat-card {
+                padding: 0.35rem 0.2rem;
+                border-radius: 9px;
+            }
+
+            .stat-header-row {
+                font-size: 0.58rem;
+            }
+
+            .stat-value {
+                font-size: 1rem;
+            }
+
+            .form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.45rem;
+                margin-bottom: 0.35rem;
+            }
+
+            label {
+                font-size: 0.7rem;
+                margin-bottom: 0.15rem;
+            }
+
+            .form-control {
+                padding: 0.4rem 0.5rem 0.4rem 1.8rem;
+                font-size: 16px !important;
+                /* Prevents iOS auto-zoom */
+                border-radius: 8px;
+            }
+
+            .form-control-phone {
+                padding-left: 3.8rem;
+            }
+
+            .input-wrapper i {
+                left: 0.55rem;
+                font-size: 0.75rem;
+            }
+
+            .input-wrapper span.prefix {
+                left: 1.6rem;
+                font-size: 0.75rem;
+                padding-right: 0.25rem;
+            }
+
+            .mode-selector {
+                padding: 0.15rem;
+                border-radius: 8px;
+            }
+
+            .mode-option {
+                padding: 0.35rem 0.15rem;
+                font-size: 0.72rem;
+                border-radius: 6px;
+            }
+
+            .btn {
+                padding: 0.45rem;
+                font-size: 0.8rem;
+                border-radius: 8px;
+                height: 32px;
+            }
+
+            .console-container {
+                height: 250px;
+                border-radius: 12px;
+            }
+
+            .console-header {
+                padding: 0.4rem 0.65rem;
+            }
+
+            .console-title {
+                font-size: 0.7rem;
+            }
+
+            .console-body {
+                padding: 0.5rem;
+                font-size: 0.72rem;
+            }
+
+            footer {
+                padding: 0.4rem 0 0.1rem 0;
+                font-size: 0.68rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Dashboard Header -->
+        <header>
+            <div class="logo-area">
+                <img src="../static/logo.jpg" alt="ATA SMS Logo" class="logo-img">
+                <div class="logo-title">
+                    <h1>ATA SMS BOOMBER <span class="version-badge">v2.0</span></h1>
+                    <p>Web Control & Command Center</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button id="themeToggleBtn" class="theme-toggle-btn" title="Temayı Değiştir">
+                    <i id="themeIcon" class="fa-solid fa-sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <div class="dashboard-grid">
+
+            <!-- Left Side: Ultra-Compact Config Panel -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fa-solid fa-sliders"></i>
+                    Gönderim Ayarları
+                </div>
+
+                <!-- Modernized Panel Stats Row -->
+                <div class="stats-grid">
+                    <div class="stat-card success-card">
+                        <div class="stat-header-row">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Başarılı
+                        </div>
+                        <div id="statSuccess" class="stat-value">0</div>
+                    </div>
+                    <div class="stat-card failed-card">
+                        <div class="stat-header-row">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            Başarısız
+                        </div>
+                        <div id="statFailed" class="stat-value">0</div>
+                    </div>
+                    <div class="stat-card speed-card">
+                        <div class="stat-header-row">
+                            <i class="fa-solid fa-bolt"></i>
+                            Toplam İstek
+                        </div>
+                        <div id="statTotal" class="stat-value">0</div>
+                    </div>
+                </div>
+
+                <form id="bombForm">
+                    <!-- Row 1: Target Phone & Email (Side-by-side) -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Telefon Numarası</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-phone"></i>
+                                <span class="prefix">+90</span>
+                                <input type="text" id="phone" name="phone" class="form-control form-control-phone"
+                                    placeholder="5xxxxxxxxx" maxlength="10" required autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mail">E-Posta (İsteğe Bağlı)</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="mail" name="mail" class="form-control"
+                                    placeholder="ornek@domain.com" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Target Count Limit & Interval (Side-by-side) -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="count">Gönderim Adeti</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-hashtag"></i>
+                                <input type="number" id="count" name="count" class="form-control" placeholder="Sonsuz"
+                                    min="1">
+                            </div>
+                        </div>
+                        <div class="form-group" id="intervalGroup">
+                            <label for="interval">Aralık (Sn)</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-clock"></i>
+                                <input type="number" id="interval" name="interval" class="form-control" placeholder="1"
+                                    min="0.1" step="0.1" value="1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Mode Toggle & Action Button (Side-by-side) -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Gönderim Modu</label>
+                            <div class="mode-selector">
+                                <div class="mode-option active" data-mode="normal">
+                                    <i class="fa-solid fa-gauge-simple-high"></i> Normal
+                                </div>
+                                <div class="mode-option" data-mode="turbo">
+                                    <i class="fa-solid fa-circle-radiation"></i> Turbo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                            style="display: flex; flex-direction: column; justify-content: flex-end;">
+                            <button type="submit" id="btnAction" class="btn btn-start">
+                                <i class="fa-solid fa-play"></i> Gönderimi Başlat
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Side: Live Terminal Console -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <div class="console-container">
+                    <div class="console-header">
+                        <div class="console-title">
+                            <span id="consoleDot" class="console-dot"
+                                style="background-color: var(--text-muted); box-shadow: none;"></span>
+                            LIVE_CONSOLE_LOGS
+                        </div>
+                        <div class="console-actions">
+                            <button id="btnClear" class="console-btn" title="Konsolu Temizle">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                            <button id="btnScroll" class="console-btn" title="Otomatik Kaydır">
+                                <i class="fa-solid fa-arrow-down-long-line"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="consoleBody" class="console-body">
+                        <div class="log-line system">[System] Konsol hazır. Başlatılması bekleniyor...</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            ATA SMS BOOMBER by.ATA SOFTWARE
+        </footer>
+    </div>
+
+    <!-- Frontend Scripting logic -->
+    <script>
+        // Theme Switcher Logic with Spin Animation & No Tilt Bug
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const metaThemeColor = document.getElementById('metaThemeColor');
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if (theme === 'light') {
+                themeIcon.className = 'fa-solid fa-moon';
+                if (metaThemeColor) metaThemeColor.setAttribute('content', '#fffaf5');
+            } else {
+                themeIcon.className = 'fa-solid fa-sun';
+                if (metaThemeColor) metaThemeColor.setAttribute('content', '#111418');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        setTheme(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            themeToggleBtn.classList.add('rotating');
+            setTimeout(() => themeToggleBtn.classList.remove('rotating'), 400);
+
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+
+        // Form & App Logic
+        const bombForm = document.getElementById('bombForm');
+        const phoneInput = document.getElementById('phone');
+        const mailInput = document.getElementById('mail');
+        const countInput = document.getElementById('count');
+        const intervalInput = document.getElementById('interval');
+        const intervalGroup = document.getElementById('intervalGroup');
+        const btnAction = document.getElementById('btnAction');
+        const consoleDot = document.getElementById('consoleDot');
+
+        const statSuccess = document.getElementById('statSuccess');
+        const statFailed = document.getElementById('statFailed');
+        const statTotal = document.getElementById('statTotal');
+        const consoleBody = document.getElementById('consoleBody');
+        const btnClear = document.getElementById('btnClear');
+        const btnScroll = document.getElementById('btnScroll');
+
+        let currentMode = 'normal';
+        let isRunning = false;
+        let pollIntervalId = null;
+        let lastLogIndex = 0;
+        let autoScroll = true;
+
+        // Mode Switching UI Logic
+        document.querySelectorAll('.mode-option').forEach(option => {
+            option.addEventListener('click', () => {
+                if (isRunning) return; // Disable changes when running
+
+                document.querySelectorAll('.mode-option').forEach(o => o.classList.remove('active'));
+                option.classList.add('active');
+                currentMode = option.getAttribute('data-mode');
+
+                if (currentMode === 'turbo') {
+                    intervalGroup.style.opacity = '0.4';
+                    intervalInput.disabled = true;
+                } else {
+                    intervalGroup.style.opacity = '1';
+                    intervalInput.disabled = false;
+                }
+            });
+        });
+
+        // Toggle auto-scroll button visual
+        btnScroll.addEventListener('click', () => {
+            autoScroll = !autoScroll;
+            btnScroll.style.color = autoScroll ? 'var(--primary)' : 'var(--text-muted)';
+            if (autoScroll) {
+                consoleBody.scrollTop = consoleBody.scrollHeight;
+            }
+        });
+
+        // Clear console log
+        btnClear.addEventListener('click', () => {
+            consoleBody.innerHTML = '<div class="log-line system">[System] Konsol temizlendi.</div>';
+        });
+
+        // Start/Stop Bomber Task Form Submission
+        bombForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (isRunning) {
+                // STOP task request
+                btnAction.disabled = true;
+                try {
+                    const res = await fetch('/api/stop', { method: 'POST' });
+                    const data = await res.json();
+                    if (!res.ok) {
+                        alert(data.message || 'Durdurma başarısız oldu.');
+                        btnAction.disabled = false;
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('Sunucuyla bağlantı kurulamadı.');
+                    btnAction.disabled = false;
+                }
+            } else {
+                // START task request
+                const phone = phoneInput.value.trim();
+                const mail = mailInput.value.trim();
+                const count = countInput.value ? parseInt(countInput.value) : null;
+                const interval = parseFloat(intervalInput.value) || 1.0;
+
+                btnAction.disabled = true;
+                try {
+                    const res = await fetch('/api/start', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ phone, mail, count, interval, mode: currentMode })
+                    });
+                    const data = await res.json();
+                    if (res.ok) {
+                        // Success starting
+                        lastLogIndex = 0;
+                        consoleBody.innerHTML = ''; // Reset console on start
+                        updateDashboardState(true);
+                        startPolling();
+                    } else {
+                        alert(data.message || 'Başlatılamadı.');
+                        btnAction.disabled = false;
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('Sunucuyla bağlantı kurulamadı.');
+                    btnAction.disabled = false;
+                }
+            }
+        });
+
+        // Poll API status from server
+        function startPolling() {
+            if (pollIntervalId) clearInterval(pollIntervalId);
+
+            pollIntervalId = setInterval(async () => {
+                try {
+                    const res = await fetch('/api/status');
+                    if (!res.ok) return;
+
+                    const data = await res.json();
+
+                    // Update stats
+                    statSuccess.textContent = data.success;
+                    statFailed.textContent = data.failed;
+                    statTotal.textContent = data.success + data.failed;
+
+                    // Append new logs
+                    if (data.logs && data.logs.length > 0) {
+                        // If log count was reset or backend restarted
+                        if (lastLogIndex > data.logs.length) {
+                            lastLogIndex = 0;
+                            consoleBody.innerHTML = '';
+                        }
+
+                        for (let i = lastLogIndex; i < data.logs.length; i++) {
+                            appendLogLine(data.logs[i]);
+                        }
+                        lastLogIndex = data.logs.length;
+                    }
+
+                    // Check running state changed
+                    if (data.running !== isRunning) {
+                        updateDashboardState(data.running);
+                        if (!data.running) {
+                            clearInterval(pollIntervalId);
+                        }
+                    }
+
+                } catch (err) {
+                    console.error('Polling error:', err);
+                }
+            }, 1000);
+        }
+
+        // Add log element to terminal console
+        function appendLogLine(line) {
+            const div = document.createElement('div');
+            div.className = 'log-line';
+
+            // Format colors
+            if (line.includes('Başarılı')) {
+                div.classList.add('success');
+            } else if (line.includes('Başarısız') || line.includes('Hata') || line.includes('Hatalı')) {
+                div.classList.add('error');
+            } else if (line.includes('[System]')) {
+                div.classList.add('system');
+            } else if (line.includes('[Info]')) {
+                div.classList.add('info');
+            } else {
+                div.classList.add('neutral');
+            }
+
+            div.textContent = line;
+            consoleBody.appendChild(div);
+
+            if (autoScroll) {
+                consoleBody.scrollTop = consoleBody.scrollHeight;
+            }
+        }
+
+        // Update front UI widgets based on running state
+        function updateDashboardState(running) {
+            isRunning = running;
+            btnAction.disabled = false;
+
+            if (running) {
+                // UI shows Active state
+                consoleDot.style.backgroundColor = 'var(--success)';
+                consoleDot.style.boxShadow = '0 0 8px var(--success)';
+
+                // Form locking
+                phoneInput.disabled = true;
+                mailInput.disabled = true;
+                countInput.disabled = true;
+                intervalInput.disabled = true;
+
+                // Button style to stop
+                btnAction.className = 'btn btn-stop';
+                btnAction.innerHTML = '<i class="fa-solid fa-stop"></i> Gönderimi Durdur';
+            } else {
+                // UI shows idle state
+                consoleDot.style.backgroundColor = 'var(--danger)';
+                consoleDot.style.boxShadow = 'none';
+
+                // Form unlocking
+                phoneInput.disabled = false;
+                mailInput.disabled = false;
+                countInput.disabled = false;
+                if (currentMode !== 'turbo') {
+                    intervalInput.disabled = false;
+                }
+
+                // Button style to start
+                btnAction.className = 'btn btn-start';
+                btnAction.innerHTML = '<i class="fa-solid fa-play"></i> Gönderimi Başlat';
+            }
+        }
+
+        // Page load - check status once
+        async function init() {
+            try {
+                const res = await fetch('/api/status');
+                if (res.ok) {
+                    const data = await res.json();
+                    updateDashboardState(data.running);
+
+                    // Display existing stats
+                    statSuccess.textContent = data.success;
+                    statFailed.textContent = data.failed;
+                    statTotal.textContent = data.success + data.failed;
+
+                    // Display existing logs
+                    consoleBody.innerHTML = '';
+                    if (data.logs) {
+                        data.logs.forEach(appendLogLine);
+                        lastLogIndex = data.logs.length;
+                    }
+
+                    if (data.running) {
+                        startPolling();
+                    }
+                }
+            } catch (err) {
+                console.error('Init status check failed:', err);
+            }
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
